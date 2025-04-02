@@ -1,5 +1,6 @@
 package edu.westga.comp4420.junit_sample.model;
 
+
 public class TelephoneChecker {
 	
 	/** Verifies that the provided number is a valid phone number.
@@ -15,12 +16,12 @@ public class TelephoneChecker {
 	public boolean verifyNumber(long number) {
 		if (number < 1000000L) {
 			return false;
-		} else if (number < 9999999L) {
-			return false;
+		} else if (number <= 9999999L) {
+			return true;
 		} else if (number < 1000000000L) {
 			return false;
 		} else {
-			return number < 9999999999L;
+			return number <= 9999999999L;
 		} 
 	}
 	
@@ -33,7 +34,7 @@ public class TelephoneChecker {
 	 * 	911
 	 * 	411
 	 * 
-	 * @precondition number if a valid phone number
+	 * @precondition number is a valid phone number
 	 * @postcondition none
 	 * 
 	 * @param number the number provided to be checked
@@ -42,6 +43,13 @@ public class TelephoneChecker {
 	 * 			false	if number does not match heuristics for potential spam
 	 */
 	public boolean identifySpam(long number) {
-		return false;
-	}
+        if (number < 1000000000L || number > 9999999999L) {
+            return false;
+        }
+
+        String areaCode = String.valueOf(number).substring(0, 3);
+        return areaCode.equals("999") || areaCode.equals("900") || areaCode.equals("888")
+            || areaCode.equals("800") || areaCode.equals("911") || areaCode.equals("411");
+    }
+	
 }

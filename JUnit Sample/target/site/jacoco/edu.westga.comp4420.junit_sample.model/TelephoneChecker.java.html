@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TelephoneChecker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Sample-JUnit-Project</a> &gt; <a href="index.source.html" class="el_package">edu.westga.comp4420.junit_sample.model</a> &gt; <span class="el_source">TelephoneChecker.java</span></div><h1>TelephoneChecker.java</h1><pre class="source lang-java linenums">package edu.westga.comp4420.junit_sample.model;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TelephoneChecker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">comp4420-JCarter-Activity7</a> &gt; <a href="index.source.html" class="el_package">edu.westga.comp4420.junit_sample.model</a> &gt; <span class="el_source">TelephoneChecker.java</span></div><h1>TelephoneChecker.java</h1><pre class="source lang-java linenums">package edu.westga.comp4420.junit_sample.model;
 
-<span class="fc" id="L3">public class TelephoneChecker {</span>
+
+<span class="fc" id="L4">public class TelephoneChecker {</span>
 	
 	/** Verifies that the provided number is a valid phone number.
 	 * 
@@ -13,14 +14,14 @@
 	 * 			false	if number is not a valid phone number
 	 */
 	public boolean verifyNumber(long number) {
-<span class="pc bpc" id="L16" title="1 of 2 branches missed.">		if (number &lt; 1000000L) {</span>
-<span class="fc" id="L17">			return false;</span>
-<span class="nc bnc" id="L18" title="All 2 branches missed.">		} else if (number &lt; 9999999L) {</span>
-<span class="nc" id="L19">			return false;</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">		} else if (number &lt; 1000000000L) {</span>
-<span class="nc" id="L21">			return false;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">		if (number &lt; 1000000L) {</span>
+<span class="fc" id="L18">			return false;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">		} else if (number &lt;= 9999999L) {</span>
+<span class="fc" id="L20">			return true;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">		} else if (number &lt; 1000000000L) {</span>
+<span class="fc" id="L22">			return false;</span>
 		} else {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">			return number &lt; 9999999999L;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">			return number &lt;= 9999999999L;</span>
 		} 
 	}
 	
@@ -33,7 +34,7 @@
 	 * 	911
 	 * 	411
 	 * 
-	 * @precondition number if a valid phone number
+	 * @precondition number is a valid phone number
 	 * @postcondition none
 	 * 
 	 * @param number the number provided to be checked
@@ -42,7 +43,14 @@
 	 * 			false	if number does not match heuristics for potential spam
 	 */
 	public boolean identifySpam(long number) {
-<span class="nc" id="L45">		return false;</span>
-	}
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if (number &lt; 1000000000L || number &gt; 9999999999L) {</span>
+<span class="fc" id="L47">            return false;</span>
+        }
+
+<span class="fc" id="L50">        String areaCode = String.valueOf(number).substring(0, 3);</span>
+<span class="fc bfc" id="L51" title="All 6 branches covered.">        return areaCode.equals(&quot;999&quot;) || areaCode.equals(&quot;900&quot;) || areaCode.equals(&quot;888&quot;)</span>
+<span class="fc bfc" id="L52" title="All 6 branches covered.">            || areaCode.equals(&quot;800&quot;) || areaCode.equals(&quot;911&quot;) || areaCode.equals(&quot;411&quot;);</span>
+    }
+	
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
